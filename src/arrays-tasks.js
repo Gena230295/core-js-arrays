@@ -20,8 +20,14 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const dist =
+    start < 0 && end >= 0
+      ? Math.abs(end) + Math.abs(start) + 1
+      : Math.abs(Math.abs(end) - Math.abs(start)) + 1;
+  const str = String(0).repeat(dist);
+  const finArr = Array.from(str, (a, i) => Number(a) + i + start);
+  return finArr;
 }
 
 /**
@@ -37,8 +43,14 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  const newArr1 = arr1.length >= arr2.length ? arr1 : arr2;
+  const newArr2 = arr1.length < arr2.length ? arr1 : arr2;
+  const difArr = newArr1.length - newArr2.length;
+  const newArr3 = new Array(difArr).fill(0);
+  const newArr4 = newArr2.concat(newArr3);
+  const finArr = newArr1.map((a, i) => newArr4[i] + a);
+  return finArr;
 }
 
 /**
@@ -536,8 +548,21 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const newArr = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  const finArr = arr.sort((a, b) => newArr.indexOf(a) - newArr.indexOf(b));
+  return finArr;
 }
 
 /**
@@ -559,8 +584,14 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const firstPart = arr.slice(0, Math.floor(arr.length / 2));
+  const secondPart = arr.slice(Math.ceil(arr.length / 2), arr.length);
+  const middlePart =
+    arr.length % 2 === 0
+      ? []
+      : arr.slice(Math.floor(arr.length / 2), Math.ceil(arr.length / 2));
+  return secondPart.concat(middlePart, firstPart);
 }
 
 module.exports = {
