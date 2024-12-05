@@ -446,8 +446,11 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  const newArr = arr.map((a) => `000000${a.toString(16).toUpperCase()}`);
+  const finArr = newArr.map((a) => a.slice(a.length - 6, a.length));
+  const finArrStill = finArr.map((a) => `#${a}`);
+  return finArrStill;
 }
 
 /**
