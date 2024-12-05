@@ -330,8 +330,10 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  const newArr = arr.map((a) => a[0] - a[1]);
+  const finArr = newArr.reduce((a, b) => a + b, 0);
+  return finArr;
 }
 
 /**
@@ -379,10 +381,17 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  let sum = arr;
+  let newSum = '';
+  const newArr = indices.reduce((acc, curr) => {
+    newSum = sum[curr];
+    sum = newSum;
+    acc.push(newSum);
+    return acc;
+  }, []);
+  return newArr[indices.length - 1];
 }
-
 /**
  * Returns the number of all falsy values in the specified array.
  *
@@ -395,8 +404,9 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  const newArr = arr.filter((a) => !!a === false);
+  return newArr.length;
 }
 
 /**
